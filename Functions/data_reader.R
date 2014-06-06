@@ -1,0 +1,29 @@
+data_reader <- function(start_date, end_date){
+  
+  #Grab the data from our MySQL db
+  data <- slave_query(query = paste("SELECT event_connectStart AS start_ts,
+                                                 event_connectEnd as end_ts,
+                                                 timestamp,
+                                                 event_mobileMode AS site,
+                                                 event_isHttps AS https,
+                                                 event_isAnon AS anon,
+                                                 event_originCountry AS country
+                                                 FROM NavigationTiming_8365252
+                                                 WHERE event_action = 'view' AND timestamp BETWEEN",start_date, "AND",
+                                                 end_date),
+                               db = "log")
+  
+  
+  #Handle site NULLs
+  data$site[!is.na(data$site)] <- "mobile"
+  data$site[is.na(data$site)] <- "desktop"
+  
+  #Mark rows with invalid country codes
+  data$country[!nchar(data$country) == 2] <- NA
+  
+  #Clean
+  data <- data[complete.cases(data),]
+  
+  #Return
+  return(data)
+}
