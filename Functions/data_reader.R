@@ -24,6 +24,12 @@ data_reader <- function(start_date, end_date){
   #Clean
   data <- data[complete.cases(data),]
   
+  #Work out timestamps
+  data$intertime <- data$end_ts - data$start_ts
+  
+  #Filter
+  data <- data[,c("intertime","site","https","anon","country")]
+  
   #Return
   return(data)
 }
