@@ -9,7 +9,7 @@ data_reader <- function(start_date, end_date){
                                                  event_isAnon AS anon,
                                                  event_originCountry AS country
                                                  FROM NavigationTiming_8365252
-                                                 WHERE event_action = 'view' AND timestamp BETWEEN",start_date, "AND",
+                                                 WHERE event_action = 'view' AND LEFT(timestamp,8) BETWEEN",start_date, "AND",
                                                  end_date),
                                db = "log")
   
@@ -30,6 +30,8 @@ data_reader <- function(start_date, end_date){
   #Filter
   data <- data[,c("intertime","site","https","anon","country")]
   
+  #Sample
+  data <- data[sample(1:nrow(data),100000),]
   #Return
   return(data)
 }
