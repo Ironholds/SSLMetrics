@@ -1,5 +1,6 @@
-#Dependencies
-library(RMySQL)
+#Libraries
+library(ggplot2)
+library(WMUtils)
 
 #Options
-option(scipen=500)
+options(scipen=500)

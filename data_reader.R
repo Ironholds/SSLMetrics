@@ -1,7 +1,7 @@
 data_reader <- function(start_date, end_date){
   
   #Grab the data from our MySQL db
-  data <- slave_query(query = paste("SELECT event_connectStart AS start_ts,
+  data <- mysql_query(query = paste("SELECT event_connectStart AS start_ts,
                                                  event_connectEnd as end_ts,
                                                  timestamp,
                                                  event_mobileMode AS site,
@@ -32,6 +32,7 @@ data_reader <- function(start_date, end_date){
   
   #Sample
   data <- data[sample(1:nrow(data),100000),]
+
   #Return
   return(data)
 }
