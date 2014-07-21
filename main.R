@@ -12,7 +12,7 @@ SSLMetrics <- function(){
   save(pre_change,post_change, file = "ssl_data.RData")
   
   #Generate and print t-test
-  print(t.test(x = pre_change$intertime, y = post_change$intertime))
+  print(t.test(x = log(pre_change$intertime), y = log(post_change$intertime)))
   
 }
 
