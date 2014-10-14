@@ -28,3 +28,36 @@ alternative hypothesis: true difference in means is not equal to 0
 sample estimates:
   mean of x mean of y 
 93.45659  96.56889 
+
+90%
+207
+
+BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+Based on 10000 bootstrap replicates
+
+CALL : 
+boot.ci(boot.out = boot(sample(pre_change$intertime, 10000), 
+    function(x, indices) {
+        quantile(x[indices], 0.9)
+    }, 10000))
+
+Intervals : 
+Level      Normal              Basic         
+95%   (200.7, 215.0 )   (200.0, 215.0 )  
+
+Level     Percentile            BCa          
+95%   (201.0, 216.0 )   (200.0, 213.1 )  
+Calculations and Intervals on Original Scale
+Warning message:
+In boot.ci(boot(sample(pre_change$intertime, 10000), function(x,  :
+  bootstrap variances needed for studentized intervals
+
+90% 
+214
+
+Level      Normal              Basic         
+95%   (216.1, 235.9 )   (216.9, 235.0 )  
+
+Level     Percentile            BCa          
+95%   (217.0, 235.1 )   (217.0, 235.1 )  
+Calculations and Intervals on Original Scale
