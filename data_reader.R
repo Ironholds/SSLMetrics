@@ -28,7 +28,7 @@ data_reader <- function(start_date, end_date){
   data$intertime <- data$end_ts - data$start_ts
   
   #Filter
-  data <- data[,c("intertime","site","https","anon","country")]
+  data <- data[,c("start_ts","end_ts","timestamp") := NULL]
   
   #Sample
   data <- data[sample(1:nrow(data),100000),]
