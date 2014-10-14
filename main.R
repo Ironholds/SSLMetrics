@@ -15,10 +15,10 @@ SSLMetrics <- function(){
   print(t.test(x = log(pre_change$intertime), y = log(post_change$intertime)))
   
   #Run bootstrapping over the top 10 percent just to be sure.
-  print(quantile(pre_change$intertime), props = .9)
+  print(quantile(pre_change$intertime, probs = .9))
   print(boot.ci(boot(sample(pre_change$intertime,10000), function(x, indices){quantile(x[indices], .9)}, 10000)))
-  print(quantile(post_change$intertime), props = .9)
-  print(boot.ci(boot(sample(pre_change$intertime,10000), function(x, indices){quantile(x[indices], .9)}, 10000)))
+  print(quantile(post_change$intertime, probs = .9))
+  print(boot.ci(boot(sample(post_change$intertime,10000), function(x, indices){quantile(x[indices], .9)}, 10000)))
 
 }
 
